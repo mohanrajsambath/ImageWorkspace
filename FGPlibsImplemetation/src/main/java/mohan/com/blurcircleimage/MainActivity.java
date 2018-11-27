@@ -1,8 +1,8 @@
 package mohan.com.blurcircleimage;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
     String imgUrl0="http://i.imgur.com/DvpvklR.png";
     String imgUrl1="https://am22.akamaized.net/tms/cnt/uploads/2018/09/avengers-4-promo-leak.jpg";
     String imgUrl2="https://cdn.pinkvilla.com/files/styles/contentpreview/public/Avengers%204%20Here%27s%20why%20Robert%20Downey%20Jrs%20film%20trailer%20could%20be%20out%20on%20November%2028.jpg?itok=c-f32XPv";
-
+    String imgUrl3="http://cinema.com/image_lib/CartoonNetwork.jpg";
     ImageView picassoImageView,glideImageView,glideImageView_blur;
-    SimpleDraweeView sdv_image,sdv_image_circle;
+    SimpleDraweeView sdv_image,sdv_image_circle,sdv_my_image_view;
     Postprocessor postprocessor;
     ImageRequest imageRequest;
     PipelineDraweeController controller;
-    public final int BLUR_PRECENTAGE = 20;
+    public final int BLUR_PRECENTAGE = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViews();
+        configFrescoAllOptions();
         configFrescoCircle();
         configFrescoBlur();
         configPicasso();
     }
+
+
 
 
     private void initViews() {
@@ -49,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
         glideImageView_blur= findViewById(R.id.glideImageView_blur);
         sdv_image =findViewById(R.id.sdv_image);
         sdv_image_circle=findViewById(R.id.sdv_image_circle);
+        sdv_my_image_view=findViewById(R.id.sdv_my_image_view);
+    }
+
+    private void configFrescoAllOptions() {
+        Uri imageUri = Uri.parse(imgUrl3);
+        sdv_my_image_view.setImageURI(imageUri);
     }
 
     private void configFrescoCircle() {
